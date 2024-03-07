@@ -29,7 +29,7 @@ const SongBar = ({ song, i, artistId, isPlaying, activeSong, handlePauseClick, h
         </p>
       </div>
     </div>
-    {!artistId
+    {!artistId && song?.hub?.actions
       ? (
         <PlayPause
           isPlaying={isPlaying}
