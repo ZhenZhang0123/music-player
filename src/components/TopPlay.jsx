@@ -13,13 +13,13 @@ import "swiper/css/free-mode"
 
 
 const TopChartCard = ({ song, i, isPlaying, activeSong, handlePauseClick, handlePlayClick, data }) => (
-  <div className="w-full flex flex-row items-center hover:bg-[#4c426e] py-2 p-4 rounded-lg cursor-pointer mb-2">
+  <div className={`w-full flex flex-row items-center hover:bg-[#4c426e] ${activeSong?.title === song?.title ? 'bg-[#4c426e]' : 'bg-transparent'} py-2 p-4 rounded-lg cursor-pointer mb-2`}>
     <h3 className="font-bold text-base text-white mr-3">{i + 1}.</h3>
     <div className="flex-1 flex flex-row justify-between items-center">
       <img alt={song?.title} src={song?.images?.coverart} className="w-20 h-20 rounded-lg" />
       <div className="flex-1 flex flex-col justify-center mx-3">
         <Link to={`/songs/${song?.key}`}>
-          <p className="font-bold text-xl text-white truncate">{song?.title}</p>
+          <p className="font-bold text-xl text-white">{song?.title}</p>
         </Link>
         <Link to={`/artists/${song?.artists[0]?.adamid}`}>
           <p className="mt-1 text-base text-gray-300">{song?.subtitle}</p>
@@ -31,7 +31,7 @@ const TopChartCard = ({ song, i, isPlaying, activeSong, handlePauseClick, handle
       activeSong={activeSong}
       song={song}
       handlePause={handlePauseClick}
-      handlePlay={() => handlePlayClick(song, i, data)}
+      handlePlay={handlePlayClick}
     />
   </div>
 )
@@ -59,7 +59,7 @@ const TopPlay = () => {
   return (
     <div ref={divRef} className="xl:ml-6 ml-0 xl:mb-0 mb-6 flex-1 xl:max-w-[500px] max-w-full flex flex-col">
       <div className="w-full flex flex-col">
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-row justify-between items-center">
           <h2 className="text-white font-bold text-2xl">Top Charts</h2>
           <Link to="/top-charts">
             <p className="text-gray-300 text-base cursor-pointer">See more</p>
@@ -82,7 +82,7 @@ const TopPlay = () => {
       </div>
 
       <div className="w-full flex flex-col mt-8">
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-row justify-between items-center">
           <h2 className="text-white font-bold text-2xl">Top Artistss</h2>
           <Link to="/top-artists">
             <p className="text-gray-300 text-base cursor-pointer">See more</p>
